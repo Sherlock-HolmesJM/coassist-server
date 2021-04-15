@@ -2,8 +2,6 @@ const { getWorkbook } = require('../report');
 
 const headers = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
 };
 
 // updateBreakdown();
@@ -15,8 +13,8 @@ exports.handler = async (event, context) => {
   try {
     const buffer = await getWorkbook();
     return {
-      statusCode: 200,
       headers,
+      statusCode: 200,
       body: JSON.stringify(buffer),
     };
   } catch (e) {
