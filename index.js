@@ -26,14 +26,20 @@ app.get("/api/excel", async (req, res) => {
 app.get("/api/metadata/:id", async (req, res) => {
   const url = `https://www.youtube.com/watch?v=${req.params.id}`;
 
-  youtube.metadata(url).then(
-    function (json) {
-      res.send(json);
-    },
-    function (err) {
-      res.send(err);
-    }
-  );
+  console.log(req.params.id);
+
+  try {
+    youtube.metadata(url).then(
+      function (json) {
+        res.send(json);
+      },
+      function (err) {
+        res.send(err);
+      }
+    );
+  } catch (e) {
+    res.send(e);
+  }
 });
 
 const port = process.env.PORT || 5000;
